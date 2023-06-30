@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *Mapper.xml 정의->*(테이블명)Mapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shopMapper">
+
+<select id="foodsList" resultType="com.foods.vo.FoodsVO">
+      SELECT foodsId,foodsName, foodsDetail, foodsPrice, cateCode, foodsRegdate,foodsReply FROM foods_detail order by foodsId
+</select>
+<select id="foodsView" resultType="com.foods.vo.FoodsVO">
+      SELECT foodsId, foodsName, cateCode, foodsPrice, foodsDetail,foodsRegdate,foodsReply
+      FROM foods_detail WHERE foodsId=#{foodsId}
+   </select> 
+</mapper>

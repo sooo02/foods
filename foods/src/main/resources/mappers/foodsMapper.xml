@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- *Mapper.xml 정의->*(테이블명)Mapper.xml -->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="foodsMapper">
+
+<select id="foodsList" resultType="com.foods.vo.FoodsVO">
+      SELECT foodsId,foodsName, foodsDetail, foodsPrice, cateCode, foodsRegdate,foodsImg,foodsReply FROM foods_detail order by foodsId
+   </select>
+   
+   <!-- 삽입 -->
+   <!-- 입력폼에서 vo에 데이터가 저장 vo변수를 사용하려면 EL -->
+   <!--parameterType="com.spring.memver.vo.MemberVO" -->
+   <insert id="foodsWrite">
+      INSERT INTO foods_detail(foodsName,cateCode, foodsPrice,foodsDetail,foodsImg,foodsReply) 
+      values (#{foodsName}, #{cateCode}, #{foodsPrice}, #{foodsDetail},#{foodsImg},#{foodsReply}) 
+   </insert>
+   <!-- 해당자료만 조회 -->
+   <select id="foodsView" resultType="com.foods.vo.FoodsVO">
+      SELECT foodsId, foodsName, cateCode, foodsPrice, foodsDetail,foodsRegdate,foodsImg,foodsReply 
+      FROM foods_detail WHERE foodsId=#{foodsId}
+   </select> 
+   <update id="foodsUpdate">
+      UPDATE foods_detail SET
+      foodsName=#{foodsName}, 
+      cateCode=#{cateCode}, 
+      foodsPrice=#{foodsPrice},
+      foodsDetail=#{foodsDetail},
+      foodsImg=#{foodsImg},
+      foodsReply=#{foodsReply}
+      WHERE foodsId=#{foodsId}
+   </update> 
+    <delete id="foodsDelete">
+    DELETE FROM foods_detail WHERE foodsId=#{foodsId}
+</delete>
+<!-- 상품 검색기능을 추가 예정 -->
+
+   
+</mapper>
+<!-- mapper를 완성한 후에 dao로 가서 작업 -->
